@@ -1,61 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure Test Website</title>
+    <title>Cloud Deployment Dashboard | Merry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #0078D4, #00B4FF);
-            color: white;
-            text-align: center;
-            padding-top: 100px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.15) 0px, transparent 50%);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
         }
+
+        /* Background Glow Orbs */
+        .orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        .orb-1 { top: -100px; left: -100px; }
+        .orb-2 { bottom: -100px; right: -100px; animation-delay: -4s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(20px) scale(1.05); }
+        }
+
         .card {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 15px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 440px;
+            width: 90%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 60px -12px rgba(14, 165, 233, 0.2);
+        }
+
+        .badge {
             display: inline-block;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: rgba(14, 165, 233, 0.1);
+            color: #38bdf8;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
+
         h1 {
-            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
         }
+
         p {
-            font-size: 18px;
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
+
+        .time-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #38bdf8;
+            margin-bottom: 24px;
+        }
+
         .btn {
-            margin-top: 20px;
-            padding: 10px 20px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            color: white;
             border: none;
-            border-radius: 8px;
-            background: white;
-            color: #0078D4;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            font-weight: bold;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
         }
+
         .btn:hover {
-            background: #f0f0f0;
+            opacity: 0.95;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
         }
     </style>
 </head>
 <body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
     <div class="card">
-        <h1>🚀 Azure Web Test</h1>
-        <p>Website ini berhasil berjalan di Microsoft Azure!</p>
-        <p id="time"></p>
-        <button class="btn" onclick="showMessage()">Klik Saya</button>
+        <div class="badge">☁️ Cloud Infrastructure active</div>
+        <h1>Server Deployment Online</h1>
+        <p>Aplikasi web statis berhasil di-deploy dengan mulus melalui pipeline otomatis.</p>
+        <div class="time-box" id="time">Memuat waktu...</div>
+        <button class="btn" onclick="showMessage()">Verifikasi Sistem</button>
     </div>
 
     <script>
         function showMessage() {
-            alert("Halo! Website kamu sudah berhasil berjalan di Azure 🎉");
+            alert("✨ Berhasil! Sistem berjalan normal dan terhubung secara real-time.");
         }
 
         function updateTime() {
             const now = new Date();
-            document.getElementById("time").innerText = "Waktu sekarang: " + now.toLocaleString();
+            const options = { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            };
+            document.getElementById("time").innerText = now.toLocaleDateString('id-ID', options);
         }
 
         setInterval(updateTime, 1000);
